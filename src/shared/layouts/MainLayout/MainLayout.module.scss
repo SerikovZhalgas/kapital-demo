@@ -1,0 +1,18 @@
+.MainLayout {
+    min-height: 100vh;
+
+    .header {
+        width: 100%;
+        height: var(--navbar-height);
+    }
+
+    .content {
+        max-width: 1000px;
+        width: 100%;
+        justify-self: center;
+    }
+
+    .footer {
+        width: 100%;
+    }
+}

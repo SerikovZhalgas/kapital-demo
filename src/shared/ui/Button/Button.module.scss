@@ -1,0 +1,40 @@
+.Button {
+    min-width: 30px;
+    padding: 0 10px;
+    height: 30px;
+    cursor: pointer;
+    color: var(--black-text);
+    background: var(--bg);
+    border: 1px solid var(--light-bg);
+    font: var(--font-2xl);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: var(--letter-spacing-s);
+}
+
+.filled {
+    color: var(--inverted-text);
+    background: var(--green-color);
+    border: 1px solid var(--green-color);
+}
+
+.disabled {
+    color: var(--light-grey-text);
+    background: var(--bg);
+    border: 1px solid var(--light-bg);
+    cursor: auto;
+
+    &:hover {
+        color: var(--light-grey-text);
+        background: var(--bg);
+        border: 1px solid var(--light-bg);
+    }
+}
+
+.withHover {
+    &:hover {
+        color: var(--inverted-text);
+        background: var(--green-color);
+        border: 1px solid var(--green-color);
+    }
+}

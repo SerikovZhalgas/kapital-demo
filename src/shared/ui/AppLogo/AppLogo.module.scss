@@ -1,0 +1,10 @@
+.appLogoWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.appLogo {
+    position: relative;
+    z-index: 10;
+}

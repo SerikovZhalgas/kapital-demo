@@ -1,0 +1,53 @@
+:root {
+    --font-family-main: "Montserrat", serif;
+
+    --font-size-5xs: 7px;
+    --font-size-4xs: 8px;
+    --font-size-3xs: 9px;
+    --font-size-2xs: 10px;
+    --font-size-xs: 11px;
+    --font-size-s: 12px;
+    --font-size-l: 13px;
+    --font-size-m: 14px;
+    --font-size-xl: 15px;
+    --font-size-2xl: 16px;
+    --font-size-3xl: 18px;
+    --font-size-4xl: 24px;
+    --font-size-5xl: 42px;
+
+    --font-line-default: 100%;
+    --font-line-2xs: 8px;
+    --font-line-xs: 12px;
+    --font-line-s: 14px;
+    --font-line-l: 15px;
+    --font-line-m: 16px;
+    --font-line-xl: 18px;
+    --font-line-2xl: 20px;
+    --font-line-3xl: 26px;
+    --font-line-4xl: 30px;
+    --font-line-5xl: 45px;
+
+    --font-8xs: var(--font-size-5xs) / var(--font-line-2xs) var(--font-family-main);
+    --font-7xs: var(--font-size-4xs) / var(--font-line-default) var(--font-family-main);
+    --font-6xs: var(--font-size-3xs) / var(--font-line-default) var(--font-family-main);
+    --font-5xs: var(--font-size-2xs) / var(--font-line-default) var(--font-family-main);
+    --font-4xs: var(--font-size-2xs) / var(--font-line-xs) var(--font-family-main);
+    --font-3xs: var(--font-size-xs) / var(--font-line-default) var(--font-family-main);
+    --font-2xs: var(--font-size-xs) / var(--font-line-l) var(--font-family-main);
+    --font-xs: var(--font-size-s) / var(--font-line-default) var(--font-family-main);
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+    --font-m: var(--font-size-l) / var(--font-line-m) var(--font-family-main);
+    --font-l: var(--font-size-m) / var(--font-line-default) var(--font-family-main);
+    --font-xl: var(--font-size-m) / var(--font-line-xl) var(--font-family-main);
+    --font-2xl: var(--font-size-m) / var(--font-line-4xl) var(--font-family-main);
+    --font-3xl: var(--font-size-xl) / var(--font-line-default) var(--font-family-main);
+    --font-4xl: var(--font-size-2xl) / var(--font-line-default) var(--font-family-main);
+    --font-5xl: var(--font-size-3xl) / var(--font-line-default) var(--font-family-main);
+    --font-6xl: var(--font-size-3xl) / var(--font-line-2xl) var(--font-family-main);
+    --font-7xl: var(--font-size-4xl) / var(--font-line-3xl) var(--font-family-main);
+    --font-8xl: var(--font-size-5xl) / var(--font-line-5xl) var(--font-family-main);
+
+    --letter-spacing-s: 0.23em;
+
+    --navbar-height: 100px;
+}

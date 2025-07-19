@@ -1,0 +1,13 @@
+.NewsListItem {
+    padding: 15px 40px;
+
+    .image {
+        width: 200px;
+        max-height: 132px;
+        object-fit: cover;
+    }
+
+    &:not(:last-child) {
+        box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.15);
+    }
+}
