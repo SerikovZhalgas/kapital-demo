@@ -5,10 +5,11 @@ import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
 
 interface BreadCrumbsProps {
     className?: string;
+    title?: string;
 }
 
 export const BreadCrumbs = (props: BreadCrumbsProps) => {
-    const { className } = props;
+    const { className, title } = props;
     const isMobile = useDevice();
 
     return (
@@ -16,7 +17,7 @@ export const BreadCrumbs = (props: BreadCrumbsProps) => {
             <Text text="Главные новости →" size={isMobile ? 'l' : '4xl'} />
             <Text
                 rectangle
-                text="KASE"
+                text={title}
                 size={isMobile ? 'l' : '4xl'}
                 weight="bold"
             />

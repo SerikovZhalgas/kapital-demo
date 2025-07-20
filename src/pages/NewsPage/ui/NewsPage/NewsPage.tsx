@@ -73,7 +73,7 @@ const NewsPage = (props: NewsPageProps) => {
             }
             content={
                 <Page className={classNames(cls.NewsPage, mods, [className])}>
-                    <BreadCrumbs className={cls.padding} />
+                    <BreadCrumbs title={tag?.name} className={cls.padding} />
                     <Text
                         title={tag?.name}
                         size={isMobile ? '6xl' : '8xl'}
