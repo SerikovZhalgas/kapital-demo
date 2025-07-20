@@ -1,5 +1,8 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './NotFoundPage.module.scss';
+import { AppLink } from '@/shared/ui/AppLink';
+import { getRouteNews } from '@/shared/const/router';
+import { VStack } from '@/shared/ui/Stack';
 
 interface NotFoundPageProps {
     className?: string;
@@ -7,8 +10,16 @@ interface NotFoundPageProps {
 
 export const NotFoundPage = ({ className }: NotFoundPageProps) => {
     return (
-        <div className={classNames(cls.NotFoundPage, {}, [className])}>
+        <VStack
+            gap="10"
+            justify="center"
+            align="center"
+            className={classNames(cls.NotFoundPage, {}, [className])}
+        >
             Страница не найдена
-        </div>
+            <AppLink to={getRouteNews('kase')}>
+                Перейти на страницу KASE
+            </AppLink>
+        </VStack>
     );
 };

@@ -6,6 +6,7 @@
     .content {
         width: 100%;
         justify-self: center;
+        min-height: calc(100vh - var(--navbar-height));
     }
 
     .footer {
