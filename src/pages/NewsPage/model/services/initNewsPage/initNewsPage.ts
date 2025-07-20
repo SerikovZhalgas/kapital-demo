@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getNewsPageInited } from '../../selectors/newsPageSelectors';
 import { newsPageActions } from '../../slices/newsPageSlice';
+import { fetchNewsList } from '../fetchNewsList/fetchNewsList';
 
 export const initNewsPage = createAsyncThunk<
     void,
@@ -13,6 +14,6 @@ export const initNewsPage = createAsyncThunk<
 
     if (!inited) {
         dispatch(newsPageActions.initialState());
-        // dispatch(fetchNewsList({ slug }));
+        dispatch(fetchNewsList({ slug }));
     }
 });
