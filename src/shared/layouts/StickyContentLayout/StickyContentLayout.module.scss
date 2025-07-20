@@ -9,7 +9,6 @@
     .content {
         grid-area: content;
         width: 100%;
-        min-height: 80vh;
     }
 
     .right {
@@ -21,4 +20,11 @@
 
 .mobile {
     padding: 3px 0;
+}
+
+.desktop,
+.mobile {
+    .content {
+        min-height: calc(100vh - var(--navbar-height));
+    }
 }

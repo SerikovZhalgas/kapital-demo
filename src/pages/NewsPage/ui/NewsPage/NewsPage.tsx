@@ -93,7 +93,7 @@ const NewsPage = (props: NewsPageProps) => {
                         onPageChange={handlePageChange}
                         className={cls.padding}
                     />
-                    <NewsInfiniteList />
+                    <NewsInfiniteList className={cls.padding} />
                     <Pagination
                         count={count}
                         limit={limit}

@@ -19,8 +19,10 @@ export const NewsInfiniteList = memo((props: NewsInfiniteListProps) => {
     const error = useSelector(getNewsPageError);
 
     if (error) {
-        return <Text text="Ошибка при загрузке новостей" />;
+        return (
+            <Text text="Ошибка при загрузке новостей" className={className} />
+        );
     }
 
-    return <NewsList isLoading={isLoading} news={news} className={className} />;
+    return <NewsList isLoading={isLoading} news={news} />;
 });
