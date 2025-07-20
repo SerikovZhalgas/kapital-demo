@@ -4,8 +4,8 @@ export enum AppRoutes {
     NOT_FOUND = 'not_found',
 }
 
-export const getRouteNews = () => '/';
+export const getRouteNews = (slug: string) => `/news/${slug}`;
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
-    [getRouteNews()]: AppRoutes.NEWS,
+    [getRouteNews(':slug')]: AppRoutes.NEWS,
 };

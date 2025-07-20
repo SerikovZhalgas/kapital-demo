@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Sidebar } from '@/widgets/Sidebar';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
@@ -12,7 +13,10 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { NewsInfiniteList } from '../NewsInfiniteList/NewsInfiniteList';
 import { initNewsPage } from '../../model/services/initNewsPage/initNewsPage';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
-import { newsPageReducer } from '../../model/slices/newsPageSlice';
+import {
+    newsPageActions,
+    newsPageReducer,
+} from '../../model/slices/newsPageSlice';
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs';
 import cls from './NewsPage.module.scss';
 import { Text } from '@/shared/ui/Text';
@@ -22,7 +26,10 @@ import {
     getNewsPageLimit,
     getNewsPageNum,
 } from '../../model/selectors/newsPageSelectors';
-import { mockData } from '../../model/services/fetchNewsList/mockData';
+import { PopularNewsInfiniteList } from '../PopularNewsInfiniteList/PopularNewsInfiniteList';
+import { fetchNextNewsPage } from '../../model/services/fetchNextNewsPage/fetchNextNewsPage';
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
+import { fetchNewsTagBySlug, getTagData, tagReducer } from '@/entities/Tag';
 
 interface NewsPageProps {
     className?: string;
@@ -30,41 +37,55 @@ interface NewsPageProps {
 
 const reducers: ReducerList = {
     newsPage: newsPageReducer,
+    tag: tagReducer,
 };
-
-const descriptionText =
-    'Казахстанская фондовая биржа (Kazakhstan Stock Exchange — KASE) — ' +
-    'фондовая биржа со штаб-квартирой в городе Алматы, Казахстан, занимает ' +
-    'второе место среди бирж СНГ по капитализации рынка акций. Была основана в 1993 году.';
 
 const NewsPage = (props: NewsPageProps) => {
     const { className } = props;
+    const { slug } = useParams();
     const dispatch = useAppDispatch();
+    const isMobile = useDevice();
     const count = useSelector(getNewsPageCount);
     const page = useSelector(getNewsPageNum);
     const limit = useSelector(getNewsPageLimit);
+    const tag = useSelector(getTagData);
 
     const handlePageChange = (newPage: number) => {
-        console.log('handlePageChange', newPage);
+        dispatch(newsPageActions.setPage(newPage));
+        dispatch(fetchNextNewsPage());
+    };
+
+    const mods = {
+        [cls.mobile]: isMobile,
     };
 
     useInitialEffect(() => {
-        dispatch(initNewsPage(mockData));
+        dispatch(fetchNewsTagBySlug(slug));
+        dispatch(initNewsPage({ slug }));
     });
 
     const content = (
         <StickyContentLayout
-            right={<Sidebar />}
+            right={
+                <Sidebar title="Популярные материалы">
+                    <PopularNewsInfiniteList />
+                </Sidebar>
+            }
             content={
-                <Page className={classNames(cls.NewsPage, {}, [className])}>
+                <Page className={classNames(cls.NewsPage, mods, [className])}>
                     <BreadCrumbs className={cls.padding} />
                     <Text
-                        title="KASE"
-                        size="8xl"
+                        title={tag?.name}
+                        size={isMobile ? '6xl' : '8xl'}
                         weight="bold"
+                        variant={isMobile ? 'black' : 'primary'}
                         className={cls.title}
                     />
-                    <Text text={descriptionText} className={cls.description} />
+                    <Text
+                        text={tag?.description}
+                        size={isMobile ? '4xs' : 'm'}
+                        className={cls.description}
+                    />
                     <Pagination
                         count={count}
                         limit={limit}

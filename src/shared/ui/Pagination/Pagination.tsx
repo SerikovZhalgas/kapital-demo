@@ -4,6 +4,7 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 import LeftArrowIcon from '../../assets/icons/left-arrow.svg';
 import RightArrowIcon from '../../assets/icons/right-arrow.svg';
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
 
 interface PaginationProps {
     className?: string;
@@ -15,9 +16,10 @@ interface PaginationProps {
 
 export const Pagination = (props: PaginationProps) => {
     const { className, page, count, limit, onPageChange } = props;
+    const isMobile = useDevice();
 
     const totalPages = Math.ceil(count / limit);
-    const maxPageNumbersToShow = 5;
+    const maxPageNumbersToShow = isMobile ? 3 : 5;
 
     const getPages = () => {
         const pages = [];

@@ -9,6 +9,7 @@ import { PaginationResponse } from '@/shared/types/api';
 
 interface FetchNewsListProps {
     replace?: boolean;
+    slug?: string;
 }
 
 export const fetchNewsList = createAsyncThunk<
@@ -22,11 +23,11 @@ export const fetchNewsList = createAsyncThunk<
 
     try {
         const response = await extra.api.get<PaginationResponse<News[]>>(
-            '/articles',
+            `/tags/slug/${props.slug}/articles`,
             {
                 params: {
                     limit,
-                    offset: page,
+                    offset: page - 1,
                 },
             },
         );

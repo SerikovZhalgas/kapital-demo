@@ -8,9 +8,11 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NewsPageSchema } from '@/pages/NewsPage';
+import { TagSchema } from '@/entities/Tag';
 
 export interface StateSchema {
     newsPage?: NewsPageSchema;
+    tag?: TagSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -1,34 +1,60 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/Card';
-import { Skeleton } from '@/shared/ui/Skeleton';
 import cls from './NewsListItem.module.scss';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
 
 interface NewsListItemSkeletonProps {
     className?: string;
+    small?: boolean;
 }
 
 export const NewsListItemSkeleton = memo((props: NewsListItemSkeletonProps) => {
-    const { className } = props;
+    const { className, small } = props;
+    const isMobile = useDevice();
+
+    const additional = (
+        <HStack gap={small || isMobile ? '5' : '10'}>
+            {!small && <Skeleton width={100} height={15} />}
+            <Skeleton width={small ? 50 : 60} height={small ? 12 : 15} />
+            <Skeleton width={small ? 30 : 36} height={small ? 12 : 15} />
+        </HStack>
+    );
+
+    const subtitle = <Skeleton width={340} height={36} />;
+
+    let imageSkeletonWidth = 200;
+    let imageSkeletonHeight = 132;
+    if (small) {
+        imageSkeletonWidth = 91;
+        imageSkeletonHeight = 60;
+    } else if (isMobile) {
+        imageSkeletonWidth = 121;
+        imageSkeletonHeight = 80;
+    }
 
     return (
-        <div className={classNames(cls.NewsListItem, {}, [className])}>
-            <Card className={cls.card}>
-                <div className={cls.header}>
-                    <Skeleton height={30} width={30} />
+        <Card className={classNames(cls.NewsListItem, {}, [className])}>
+            <VStack gap="5">
+                {isMobile && additional}
+                <HStack gap={small || isMobile ? '10' : '20'} align="start">
                     <Skeleton
-                        width={150}
-                        height={16}
-                        className={cls.username}
+                        width={imageSkeletonWidth}
+                        height={imageSkeletonHeight}
                     />
-                    <Skeleton width={150} height={16} className={cls.date} />
-                </div>
-                <Skeleton width={250} height={24} className={cls.title} />
-                <Skeleton height={200} className={cls.img} />
-                <div className={cls.footer}>
-                    <Skeleton height={36} width={200} />
-                </div>
-            </Card>
-        </div>
+                    <VStack gap="5">
+                        {!isMobile && additional}
+                        <Skeleton
+                            width={small || isMobile ? 170 : 340}
+                            height={small || isMobile ? 40 : 60}
+                        />
+                        {!small && !isMobile && subtitle}
+                    </VStack>
+                </HStack>
+                {isMobile && subtitle}
+            </VStack>
+        </Card>
     );
 });

@@ -5,7 +5,7 @@ import { NewsPage } from '@/pages/NewsPage';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.NEWS]: {
-        path: getRouteNews(),
+        path: getRouteNews(':slug'),
         element: <NewsPage />,
     },
     // last

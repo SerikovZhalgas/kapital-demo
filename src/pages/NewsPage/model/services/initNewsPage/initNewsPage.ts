@@ -2,19 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getNewsPageInited } from '../../selectors/newsPageSelectors';
 import { newsPageActions } from '../../slices/newsPageSlice';
-import { PaginationResponse } from '@/shared/types/api';
-import { News } from '@/entities/News';
 
 export const initNewsPage = createAsyncThunk<
     void,
-    PaginationResponse<News[]>,
+    { slug?: string },
     ThunkConfig<string>
->('newsPage/initNewsPage', async (response, thunkApi) => {
+>('newsPage/initNewsPage', async ({ slug }, thunkApi) => {
     const { getState, dispatch } = thunkApi;
     const inited = getNewsPageInited(getState());
 
     if (!inited) {
-        dispatch(newsPageActions.initialState(response));
-        // dispatch(fetchNewsList({}));
+        dispatch(newsPageActions.initialState());
+        // dispatch(fetchNewsList({ slug }));
     }
 });

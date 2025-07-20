@@ -4,6 +4,7 @@ import cls from './Footer.module.scss';
 import { VStack } from '@/shared/ui/Stack';
 import { AppLogo } from '@/shared/ui/AppLogo';
 import { Text } from '@/shared/ui/Text';
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
 
 interface FooterProps {
     className?: string;
@@ -20,15 +21,23 @@ const footerText =
 
 export const Footer = memo((props: FooterProps) => {
     const { className } = props;
+    const isMobile = useDevice();
 
     return (
-        <VStack gap="10" className={classNames(cls.Footer, {}, [className])}>
-            <AppLogo inverted width={190} height={50} />
+        <VStack
+            gap={isMobile ? '20' : '10'}
+            className={classNames(cls.Footer, {}, [className])}
+        >
+            <AppLogo
+                inverted
+                width={isMobile ? 117 : 190}
+                height={isMobile ? 31 : 50}
+            />
             <Text
                 text={footerText}
-                size="2xs"
-                weight="semi-bold"
-                variant="light-grey"
+                size={isMobile ? '8xs' : '2xs'}
+                weight={isMobile ? 'medium' : 'semi-bold'}
+                variant={isMobile ? 'grey' : 'light-grey'}
             />
         </VStack>
     );

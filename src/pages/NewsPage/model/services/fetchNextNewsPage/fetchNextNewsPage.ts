@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { newsPageActions } from '../../slices/newsPageSlice';
 import {
-    getNewsPageHasMore,
     getNewsPageIsLoading,
     getNewsPageNum,
 } from '../../selectors/newsPageSelectors';
@@ -14,12 +13,11 @@ export const fetchNextNewsPage = createAsyncThunk<
     ThunkConfig<string>
 >('newsPage/fetchNextNewsPage', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi;
-    const hasMore = getNewsPageHasMore(getState());
     const page = getNewsPageNum(getState());
     const isLoading = getNewsPageIsLoading(getState());
 
-    if (hasMore && !isLoading) {
-        dispatch(newsPageActions.setPage(page + 1));
+    if (!isLoading) {
+        dispatch(newsPageActions.setPage(page));
         dispatch(fetchNewsList({}));
     }
 });

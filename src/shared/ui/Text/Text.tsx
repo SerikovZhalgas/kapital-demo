@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 import { Icon } from '../Icon';
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
 
 export type TextVariant =
     | 'primary'
@@ -9,7 +10,8 @@ export type TextVariant =
     | 'light-grey'
     | 'green'
     | 'inverted'
-    | 'black';
+    | 'black'
+    | 'tag';
 
 export type TextAlign = 'right' | 'left' | 'center';
 export type TextWeight = 'regular' | 'medium' | 'semi-bold' | 'bold';
@@ -46,6 +48,7 @@ interface TextProps {
     weight?: TextWeight;
     letterSpacing?: TextLetterSpacing;
     leftIcon?: React.VFC<React.SVGProps<SVGSVGElement>>;
+    rectangle?: boolean;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -105,7 +108,9 @@ export const Text = memo((props: TextProps) => {
         weight = 'regular',
         letterSpacing = '',
         leftIcon,
+        rectangle,
     } = props;
+    const isMobile = useDevice();
 
     const HeaderTag = mapSizeToHeaderTag[size];
     const sizeClass = mapSizeToClass[size];
@@ -119,13 +124,21 @@ export const Text = memo((props: TextProps) => {
         className,
     ];
 
+    const iconMods = {
+        [cls.small]: isMobile,
+    };
+
     return (
         <div className={classNames(cls.Text, {}, classes)}>
+            {rectangle && <div className={cls.rectangle} />}
             {title && <HeaderTag className={cls.title}>{title}</HeaderTag>}
             {text && (
                 <p className={cls.text}>
                     {leftIcon && (
-                        <Icon Svg={leftIcon} className={cls.leftIcon} />
+                        <Icon
+                            Svg={leftIcon}
+                            className={classNames(cls.leftIcon, iconMods)}
+                        />
                     )}
                     {text}
                 </p>

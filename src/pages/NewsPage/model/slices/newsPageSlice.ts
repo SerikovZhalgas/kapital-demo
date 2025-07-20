@@ -25,7 +25,6 @@ export const newsPageSlice = createSlice({
         entities: {},
         page: 1,
         count: 0,
-        hasMore: false,
         _inited: false,
         limit: 7,
     }),
@@ -33,11 +32,9 @@ export const newsPageSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
-        initialState: (state, { payload }) => {
+        initialState: (state) => {
             state.limit = 7;
             state._inited = true;
-            state.count = payload.count;
-            newsAdapter.addMany(state, payload.rows);
         },
     },
     extraReducers: (builder) => {
@@ -53,9 +50,6 @@ export const newsPageSlice = createSlice({
             .addCase(fetchNewsList.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.count = action.payload.count;
-                state.hasMore =
-                    action.payload.offset * action.payload.limit >=
-                    action.payload.count;
 
                 if (action.meta.arg.replace) {
                     newsAdapter.setAll(state, action.payload.rows);
