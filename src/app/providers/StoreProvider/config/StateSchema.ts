@@ -9,8 +9,10 @@ import {
 import { AxiosInstance } from 'axios';
 import { NewsPageSchema } from '@/pages/NewsPage';
 import { TagSchema } from '@/entities/Tag';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export interface StateSchema {
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     newsPage?: NewsPageSchema;
     tag?: TagSchema;
 }
