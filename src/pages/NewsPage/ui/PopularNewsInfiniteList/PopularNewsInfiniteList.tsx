@@ -19,7 +19,7 @@ export const PopularNewsInfiniteList = memo(
             isLoading,
             error,
         } = usePopularNews({ dateFrom, dateTo });
-
+        console.log('news, ', news);
         if (error) {
             return (
                 <Text
