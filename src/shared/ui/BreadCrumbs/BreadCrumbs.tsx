@@ -15,12 +15,14 @@ export const BreadCrumbs = (props: BreadCrumbsProps) => {
     return (
         <HStack gap="10" className={classNames('', {}, [className])}>
             <Text text="Главные новости →" size={isMobile ? 'l' : '4xl'} />
-            <Text
-                rectangle
-                text={title}
-                size={isMobile ? 'l' : '4xl'}
-                weight="bold"
-            />
+            {title && (
+                <Text
+                    rectangle
+                    text={title}
+                    size={isMobile ? 'l' : '4xl'}
+                    weight="bold"
+                />
+            )}
         </HStack>
     );
 };

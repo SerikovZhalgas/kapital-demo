@@ -34,7 +34,7 @@ export const NewsListItem = memo((props: NewsListItemProps) => {
 
     const tags = (
         <HStack gap="2" wrap="wrap">
-            {news.tags.map((tag) => (
+            {news.tags?.map((tag) => (
                 <Text
                     key={tag.id}
                     text={tag.name}
@@ -58,7 +58,7 @@ export const NewsListItem = memo((props: NewsListItemProps) => {
         <HStack gap={small ? '5' : '10'}>
             {!small && (
                 <Text
-                    text={news.category.name}
+                    text={news.category?.name}
                     size={isMobile ? '3xs' : '3xl'}
                     weight="medium"
                     variant="green"

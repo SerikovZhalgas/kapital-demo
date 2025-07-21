@@ -15,14 +15,14 @@ export interface Related {
 
 export interface Tag {
     id: number;
-    name: string;
-    description: string;
-    slug: string;
-    frequency: number;
-    is_supertag: boolean;
-    parent_id: any;
-    meta: Meta;
-    updated_at: string;
-    parent: any;
-    related: Related[];
+    name?: string;
+    description?: string;
+    slug?: string;
+    frequency?: number;
+    is_supertag?: boolean;
+    parent_id?: any;
+    meta?: Meta;
+    updated_at?: string;
+    parent?: any;
+    related?: Related[];
 }

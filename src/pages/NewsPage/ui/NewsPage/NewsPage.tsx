@@ -29,7 +29,7 @@ import {
 import { PopularNewsInfiniteList } from '../PopularNewsInfiniteList/PopularNewsInfiniteList';
 import { fetchNextNewsPage } from '../../model/services/fetchNextNewsPage/fetchNextNewsPage';
 import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
-import { fetchTagBySlug, getTagData, tagReducer } from '@/entities/Tag';
+import { getTagData, tagReducer, fetchTagBySlug } from '@/entities/Tag';
 
 interface NewsPageProps {
     className?: string;
