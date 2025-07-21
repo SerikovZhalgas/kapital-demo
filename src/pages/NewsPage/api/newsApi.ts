@@ -1,12 +1,10 @@
 import { Dayjs } from 'dayjs';
 import { rtkApi } from '@/shared/api/rtkApi';
-import { News } from '@/entities/News';
-import { Pagination, ResponseType } from '@/shared/types/api';
 
 const newsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getPopularNews: build.query<
-            ResponseType<Pagination<News[]>>,
+            any,
             { dateFrom: Dayjs; dateTo: Dayjs; limit?: number }
         >({
             query: ({ dateFrom, dateTo, limit = 5 }) => ({
