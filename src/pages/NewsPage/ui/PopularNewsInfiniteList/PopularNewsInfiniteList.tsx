@@ -12,14 +12,21 @@ interface PopularNewsInfiniteListProps {
 export const PopularNewsInfiniteList = memo(
     (props: PopularNewsInfiniteListProps) => {
         const { className } = props;
-        const dateFrom = dayjs().subtract(7, 'day');
-        const dateTo = dayjs();
+        const dateFrom = dayjs().subtract(7, 'day').format('YYYY-MM-DD');
+        const dateTo = dayjs().format('YYYY-MM-DD');
         const {
             data: news,
             isLoading,
             error,
         } = usePopularNews({ dateFrom, dateTo });
-        console.log('news, ', news);
+        console.log(
+            'RTK Query State - news:',
+            news,
+            'isLoading:',
+            isLoading,
+            'error:',
+            error,
+        );
         if (error) {
             return (
                 <Text
