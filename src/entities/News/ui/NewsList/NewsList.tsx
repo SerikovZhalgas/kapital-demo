@@ -4,6 +4,7 @@ import { News } from '../../model/types/news';
 import { NewsListItemSkeleton } from '../NewsListItem/NewsListItemSkeleton';
 import { NewsListItem } from '../NewsListItem/NewsListItem';
 import { VStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
 
 interface NewsListProps {
     className?: string;
@@ -26,13 +27,13 @@ const getSkeletons = (className?: string, small?: boolean) =>
 export const NewsList = memo((props: NewsListProps) => {
     const { className, news, isLoading, small } = props;
 
-    // if (!isLoading && !news.length) {
-    //     return (
-    //         <div className={classNames(cls.NewsList, {}, [className])}>
-    //             <Text title="Статьи не найдены" />
-    //         </div>
-    //     );
-    // }
+    if (!isLoading && !news.length) {
+        return (
+            <div className={classNames('', {}, [className])}>
+                <Text title="Статьи не найдены" />
+            </div>
+        );
+    }
 
     return (
         <VStack className={classNames('', {}, [className])}>
