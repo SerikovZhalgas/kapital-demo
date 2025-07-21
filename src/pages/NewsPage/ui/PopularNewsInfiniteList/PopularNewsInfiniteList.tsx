@@ -14,12 +14,8 @@ export const PopularNewsInfiniteList = memo(
         const { className } = props;
         const dateFrom = dayjs().subtract(7, 'day');
         const dateTo = dayjs();
-        const {
-            data: news,
-            isLoading,
-            error,
-        } = usePopularNews({ dateFrom, dateTo });
-        console.log('news, ', news);
+        const { data, isLoading, error } = usePopularNews({ dateFrom, dateTo });
+        console.log('data, ', data);
         if (error) {
             return (
                 <Text
@@ -28,7 +24,7 @@ export const PopularNewsInfiniteList = memo(
                 />
             );
         }
-        if (!isLoading && news && !news.data.rows.length) {
+        if (!isLoading && data && !data.data.rows.length) {
             return (
                 <Text
                     text="Отсутствуют популярные материалы"
@@ -40,7 +36,7 @@ export const PopularNewsInfiniteList = memo(
         return (
             <NewsList
                 isLoading={isLoading}
-                news={news?.data.rows}
+                news={data?.data.rows}
                 className={className}
                 small
             />
