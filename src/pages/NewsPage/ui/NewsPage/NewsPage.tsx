@@ -52,7 +52,7 @@ const NewsPage = (props: NewsPageProps) => {
 
     const handlePageChange = (newPage: number) => {
         dispatch(newsPageActions.setPage(newPage));
-        dispatch(fetchNextNewsPage());
+        dispatch(fetchNextNewsPage(slug));
     };
 
     const mods = {

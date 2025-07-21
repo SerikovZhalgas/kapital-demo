@@ -8,7 +8,7 @@ import { Text } from '@/shared/ui/Text';
 
 interface NewsListProps {
     className?: string;
-    news: News[];
+    news?: News[];
     isLoading?: boolean;
     small?: boolean;
 }
@@ -27,7 +27,7 @@ const getSkeletons = (className?: string, small?: boolean) =>
 export const NewsList = memo((props: NewsListProps) => {
     const { className, news, isLoading, small } = props;
 
-    if (!isLoading && !news.length) {
+    if (!isLoading && !news?.length) {
         return (
             <div className={classNames('', {}, [className])}>
                 <Text title="Статьи не найдены" />
@@ -37,7 +37,7 @@ export const NewsList = memo((props: NewsListProps) => {
 
     return (
         <VStack className={classNames('', {}, [className])}>
-            {news.map((item) => (
+            {news?.map((item) => (
                 <NewsListItem news={item} key={item.id} small={small} />
             ))}
             {isLoading && getSkeletons(className, small)}

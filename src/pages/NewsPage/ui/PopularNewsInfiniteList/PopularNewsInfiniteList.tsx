@@ -28,7 +28,7 @@ export const PopularNewsInfiniteList = memo(
                 />
             );
         }
-        if (!news) {
+        if (!isLoading && news && !news.data.rows.length) {
             return (
                 <Text
                     text="Отсутствуют популярные материалы"
@@ -40,7 +40,7 @@ export const PopularNewsInfiniteList = memo(
         return (
             <NewsList
                 isLoading={isLoading}
-                news={news.data.rows}
+                news={news?.data.rows}
                 className={className}
                 small
             />
