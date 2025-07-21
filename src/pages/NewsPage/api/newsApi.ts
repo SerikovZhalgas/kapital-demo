@@ -10,8 +10,8 @@ const newsApi = rtkApi.injectEndpoints({
             { dateFrom: Dayjs; dateTo: Dayjs; limit?: number }
         >({
             query: ({ dateFrom, dateTo, limit = 5 }) => ({
-                url: `/articles?filter[published_at][from]=${dateFrom}
-                &filter[published_at][to]=${dateTo}&sort[views]=desc&limit=${limit}`,
+                url: `/articles?filter[published_at][from]=${dateFrom.format('YYYY-MM-DD')}
+                &filter[published_at][to]=${dateTo.format('YYYY-MM-DD')}&sort[views]=desc&limit=${limit}`,
             }),
         }),
     }),

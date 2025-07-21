@@ -29,7 +29,7 @@ import {
 import { PopularNewsInfiniteList } from '../PopularNewsInfiniteList/PopularNewsInfiniteList';
 import { fetchNextNewsPage } from '../../model/services/fetchNextNewsPage/fetchNextNewsPage';
 import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice';
-import { fetchNewsTagBySlug, getTagData, tagReducer } from '@/entities/Tag';
+import { fetchTagBySlug, getTagData, tagReducer } from '@/entities/Tag';
 
 interface NewsPageProps {
     className?: string;
@@ -60,7 +60,7 @@ const NewsPage = (props: NewsPageProps) => {
     };
 
     useInitialEffect(() => {
-        dispatch(fetchNewsTagBySlug(slug));
+        dispatch(fetchTagBySlug(slug));
         dispatch(initNewsPage({ slug }));
     });
 

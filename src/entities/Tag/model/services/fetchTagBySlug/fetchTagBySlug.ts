@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Tag } from '../../types/tag';
 
-export const fetchNewsTagBySlug = createAsyncThunk<
+export const fetchTagBySlug = createAsyncThunk<
     Tag,
     string | undefined,
     ThunkConfig<string>
->('tag/fetchNewsTagBySlug', async (slug, thunkApi) => {
+>('tag/fetchTagBySlug', async (slug, thunkApi) => {
     const { rejectWithValue, extra } = thunkApi;
 
     try {

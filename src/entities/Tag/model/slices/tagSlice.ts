@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TagSchema } from '../types/tagSchema';
-import { fetchNewsTagBySlug } from '../services/fetchNewsTag/fetchNewsTagBySlug';
+import { fetchTagBySlug } from '../services/fetchTagBySlug/fetchTagBySlug';
 
 const initialState: TagSchema = {
     isLoading: false,
@@ -14,15 +14,15 @@ export const tagSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchNewsTagBySlug.pending, (state) => {
+            .addCase(fetchTagBySlug.pending, (state) => {
                 state.error = '';
                 state.isLoading = true;
             })
-            .addCase(fetchNewsTagBySlug.fulfilled, (state, action) => {
+            .addCase(fetchTagBySlug.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchNewsTagBySlug.rejected, (state, action) => {
+            .addCase(fetchTagBySlug.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
