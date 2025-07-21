@@ -40,7 +40,7 @@ export const PopularNewsInfiniteList = memo(
         return (
             <NewsList
                 isLoading={isLoading}
-                news={news.rows}
+                news={news.data.rows}
                 className={className}
                 small
             />

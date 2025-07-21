@@ -5,7 +5,7 @@ import {
     getNewsPageLimit,
     getNewsPageNum,
 } from '../../selectors/newsPageSelectors';
-import { PaginationResponse } from '@/shared/types/api';
+import { Pagination, ResponseType } from '@/shared/types/api';
 
 interface FetchNewsListProps {
     replace?: boolean;
@@ -13,7 +13,7 @@ interface FetchNewsListProps {
 }
 
 export const fetchNewsList = createAsyncThunk<
-    PaginationResponse<News[]>,
+    Pagination<News[]>,
     FetchNewsListProps,
     ThunkConfig<string>
 >('newsPage/fetchNewsList', async (props, thunkApi) => {
@@ -22,7 +22,7 @@ export const fetchNewsList = createAsyncThunk<
     const page = getNewsPageNum(getState());
 
     try {
-        const response = await extra.api.get<PaginationResponse<News[]>>(
+        const response = await extra.api.get<ResponseType<Pagination<News[]>>>(
             `/tags/slug/${props.slug}/articles`,
             {
                 params: {
@@ -31,12 +31,12 @@ export const fetchNewsList = createAsyncThunk<
                 },
             },
         );
-        console.log('response, ', response);
+
         if (!response.data) {
             throw new Error();
         }
 
-        return response.data;
+        return response.data.data;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error');
