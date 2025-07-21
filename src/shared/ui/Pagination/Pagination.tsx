@@ -22,7 +22,7 @@ export const Pagination = (props: PaginationProps) => {
     const maxPageNumbersToShow = isMobile ? 3 : 5;
 
     const getPages = () => {
-        const pages = [];
+        const pages: Array<string | number> = [];
 
         if (totalPages <= maxPageNumbersToShow) {
             for (let i = 1; i <= totalPages; i++) {
@@ -61,7 +61,7 @@ export const Pagination = (props: PaginationProps) => {
                 pages.push(totalPages);
             }
         }
-        return Array.from(new Set(pages));
+        return Array.from(pages);
     };
 
     const pagesToDisplay = getPages();
