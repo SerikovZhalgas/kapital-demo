@@ -4,6 +4,9 @@ export const rtkApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: __API__,
+        prepareHeaders: (headers) => {
+            return headers;
+        },
     }),
     endpoints: (builder) => ({}),
 });
