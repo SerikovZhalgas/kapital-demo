@@ -19,14 +19,7 @@ export const PopularNewsInfiniteList = memo(
             isLoading,
             error,
         } = usePopularNews({ dateFrom, dateTo });
-        console.log(
-            'RTK Query State - news:',
-            news,
-            'isLoading:',
-            isLoading,
-            'error:',
-            error,
-        );
+
         if (error) {
             return (
                 <Text
