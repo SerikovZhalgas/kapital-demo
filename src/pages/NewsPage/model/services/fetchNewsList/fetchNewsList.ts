@@ -31,7 +31,7 @@ export const fetchNewsList = createAsyncThunk<
                 },
             },
         );
-
+        console.log('response, ', response);
         if (!response.data) {
             throw new Error();
         }
