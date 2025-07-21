@@ -18,6 +18,6 @@ export const fetchNextNewsPage = createAsyncThunk<
 
     if (!isLoading) {
         dispatch(newsPageActions.setPage(page));
-        dispatch(fetchNewsList({ slug }));
+        dispatch(fetchNewsList({ replace: true, slug }));
     }
 });
